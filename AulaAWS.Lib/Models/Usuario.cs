@@ -1,25 +1,23 @@
 namespace AulaAWS.Lib.Models
 {
-    public class Usuario
+    public class Usuario : ModelBase
     {
-        public int Id { get; private set; }
         public string Nome { get; private set; }
         public string Cpf { get; private set; }
         public DateTime DataNascimento { get; private set; }
         public string Email { get; private set; }
         public string Senha { get; private set; }
-        public string UrlImagemCadastro { get; private set; }
+        public string? UrlImagemCadastro { get; private set; }
         public DateTime DataCriacao { get; private set; }
 
-        public Usuario(int id, string nome, string cpf, DateTime dataNascimento, string email, string senha)
+        public Usuario(int id, string nome, string cpf, DateTime dataNascimento, string email, string senha) : base(id)
         {
-            SetId(id);
             SetNome(nome);
             SetCpf(cpf);
             SetDataNascimento(dataNascimento);
             SetEmail(email);
             SetSenha(senha);
-            DataCriacao = DateTime.Now;
+            DataCriacao = DateTime.UtcNow;
         }
         public bool ValidarSeDataNascimentoAnterior2010(DateTime dataNascimento)
         {
@@ -44,10 +42,6 @@ namespace AulaAWS.Lib.Models
             if (senha.Count() > 8)
                 return true;
             throw new Exception();
-        }
-        public void SetId(int id)
-        {
-            Id = id;
         }
         public void SetNome(string nome)
         {

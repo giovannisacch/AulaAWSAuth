@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using AulaAWS.Lib.Models;
 using AulaAWS.Web.DTOs;
+using AulaAWS.Lib.Data.Repositorios.Interfaces;
 
 namespace AulaAWS.Web.Controllers
 {
@@ -8,31 +9,36 @@ namespace AulaAWS.Web.Controllers
     [Route("[controller]")]
     public class UsuarioController : ControllerBase
     {
+        private readonly IUsuarioRepositorio _repositorio;
         public static List<Usuario> ListaUsuarios { get; set; } = new List<Usuario>();
 
-        [HttpGet]
-        public IActionResult ListaTodosUsuarios()
+        public UsuarioController(IUsuarioRepositorio repositorio)
         {
-            return Ok(ListaUsuarios);
+            _repositorio = repositorio;
+        }
+
+        [HttpGet]
+        public IActionResult ListarTodos()
+        {
+            return Ok(_repositorio.ListarTodos());
         }
         [HttpPost]
-        public IActionResult AdicionarUsuario(UsuarioDTO usuarioDto)
+        public IActionResult Adicionar(UsuarioDTO usuarioDto)
         {
             var usuario = new Usuario(usuarioDto.Id, usuarioDto.Nome, usuarioDto.Cpf, usuarioDto.DataNascimento, usuarioDto.Email, usuarioDto.Senha);
-            ListaUsuarios.Add(usuario);
+            _repositorio.Adicionar(usuario);
             return Ok(usuario);
         }
         [HttpPut]
-        public IActionResult AlterarSenha(int id, string senha)
+        public IActionResult Alterar(int id, string senha)
         {
-            var usuario = ListaUsuarios.Find(x => x.Id == id);
-            usuario.SetSenha(senha);
-            return Ok(usuario);
+            _repositorio.AlterarSenha(id, senha);
+            return Ok("Senha alterada com sucesso!");
         }
         [HttpDelete]
-        public IActionResult DeletarUsuario(int id)
+        public IActionResult Deletar(int id)
         {
-            ListaUsuarios.RemoveAll(x => x.Id == id);
+            _repositorio.Deletar(id);
             return Ok("Usuario removido com sucesso!");
         }
     }
