@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Fiz essa alteração na branch nova
+
 // Add services to the container.
 builder.Services.AddDbContext<AWSLoginContext>(
         conn => conn.UseNpgsql(builder.Configuration.GetConnectionString("AWSLoginDB"))
