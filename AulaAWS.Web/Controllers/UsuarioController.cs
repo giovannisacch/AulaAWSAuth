@@ -18,27 +18,27 @@ namespace AulaAWS.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListarTodos()
+        public async Task<IActionResult> ListarTodos()
         {
-            return Ok(_repositorio.ListarTodos());
+            return Ok(await _repositorio.ListarTodosAsync());
         }
         [HttpPost]
-        public IActionResult Adicionar(UsuarioDTO usuarioDto)
+        public async Task<IActionResult> Adicionar(UsuarioDTO usuarioDto)
         {
             var usuario = new Usuario(usuarioDto.Id, usuarioDto.Nome, usuarioDto.Cpf, usuarioDto.DataNascimento, usuarioDto.Email, usuarioDto.Senha);
-            _repositorio.Adicionar(usuario);
+            await _repositorio.AdicionarAsync(usuario);
             return Ok(usuario);
         }
         [HttpPut]
-        public IActionResult Alterar(int id, string senha)
+        public async Task<IActionResult> Alterar(int id, string senha)
         {
-            _repositorio.AlterarSenha(id, senha);
+            await _repositorio.AlterarSenhaAsync(id, senha);
             return Ok("Senha alterada com sucesso!");
         }
         [HttpDelete]
-        public IActionResult Deletar(int id)
+        public async Task<IActionResult> Deletar(int id)
         {
-            _repositorio.Deletar(id);
+            await _repositorio.DeletarAsync(id);
             return Ok("Usuario removido com sucesso!");
         }
     }

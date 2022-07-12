@@ -4,6 +4,6 @@ namespace AulaAWS.Lib.Data.Repositorios.Interfaces
 {
     public interface IUsuarioRepositorio : IRepositorioBase<Usuario>
     {
-        public void AlterarSenha(int id, string senha);
+        public Task AlterarSenhaAsync(int id, string senha);
     }
 }

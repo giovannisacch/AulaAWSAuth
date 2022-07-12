@@ -11,11 +11,11 @@ namespace AulaAWS.Lib.Data.Repositorios
             _context = context;
         }
 
-        public void AlterarSenha(int id, string senha)
+        public async Task AlterarSenhaAsync(int id, string senha)
         {
-            var usuario = _dbset.Find(id);
+            var usuario = await _dbset.FindAsync(id);
             usuario.SetSenha(senha);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

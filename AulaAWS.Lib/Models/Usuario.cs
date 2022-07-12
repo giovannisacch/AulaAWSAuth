@@ -33,7 +33,7 @@ namespace AulaAWS.Lib.Models
         }
         public bool ValidarSeCpfPossuiOnzeDigitosEApenasNumeros(string cpf)
         {
-            if ((cpf.Count() <= 11) & (!int.TryParse(cpf, out int value)))
+            if ((cpf.Count() <= 11) & cpf.All(char.IsNumber))
                 return true;
             throw new Exception();
         }
