@@ -23,7 +23,7 @@ namespace AulaAWS.Web.Controllers
                 return BadRequest("Tipo Inválido");
             using (var imageStream = new MemoryStream())
             {
-                image.CopyToAsync(imageStream);
+                await image.CopyToAsync(imageStream);
 
                 var request = new PutObjectRequest();
                 request.Key = "reconhecimento" + image.FileName;
