@@ -57,21 +57,21 @@ namespace AulaAWS.Web.Controllers
         {
             var usuario = new Usuario(usuarioDto.Id, usuarioDto.Nome, usuarioDto.Cpf, usuarioDto.DataNascimento, usuarioDto.Email, usuarioDto.Senha);
             await _repositorio.AdicionarAsync(usuario);
-            return Ok(usuario);
+            return Ok(usuario.Id);
         }
         [HttpPost("imagem")]
         public async Task<IActionResult> AdicionarImagem(int id, IFormFile imagem)
         {
-            var nomeArquivo = await SalvarNoS3(imagem);
+
             var imagemValida = await ValidarImagem(imagem);
             if (imagemValida)
             {
+                var nomeArquivo = await SalvarNoS3(imagem);
                 await _repositorio.AtualizarImagemAsync(id, nomeArquivo);
                 return Ok();
             }
             else
             {
-                await _amazonS3.DeleteObjectAsync("aula-imagens", nomeArquivo);
                 return BadRequest();
             }
         }
@@ -166,7 +166,7 @@ namespace AulaAWS.Web.Controllers
 
                 request.TargetImage = targetImage;
                 request.SourceImage = sourceImage;
-                
+
                 var imagemValida = await ValidarImagem(imagemLogin);
                 var response = await _rekognitionClient.CompareFacesAsync(request);
                 if (imagemValida && response.FaceMatches.Count() == 1 && response.FaceMatches.First().Face.Confidence > 90)
