@@ -6,5 +6,6 @@ namespace AulaAWS.Lib.Data.Repositorios.Interfaces
     {
         public Task AlterarSenhaAsync(int id, string senha);
         public Task AtualizarImagemAsync(int id, string nomeArquivo);
+        public Task<Usuario> BuscarUsuarioPorEmail(string email);
     }
 }

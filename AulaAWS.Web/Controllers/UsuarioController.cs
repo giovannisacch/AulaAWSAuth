@@ -34,7 +34,7 @@ namespace AulaAWS.Web.Controllers
         [HttpGet("Login")]
         public async Task<IActionResult> Login(string email, string senhaLogin)
         {
-            var usuario = await BuscarUsuarioPorEmail(email);
+            var usuario = await _repositorio.BuscarUsuarioPorEmail(email);
             var senhaEstaCorreta = await VerificarSenha(senhaLogin, usuario.Senha);
             if (senhaEstaCorreta)
                 return Ok(usuario.Id);
@@ -127,21 +127,9 @@ namespace AulaAWS.Web.Controllers
                     throw new Exception("Essa imagem nao contem um rosto!");
             }
         }
-        private async Task<Usuario> BuscarUsuarioPorEmail(string email)
-        {
-            var listaUsuarios = await _repositorio.ListarTodosAsync();
-            var usuario = listaUsuarios.Find(x => x.Email == email);
-            if (usuario != null)
-                return usuario;
-            else
-                throw new Exception("Nenhum usuario foi encontrado com esse email!");
-        }
         private async Task<bool> VerificarSenha(string senhaLogin, string senhaUsuario)
         {
-            if (senhaLogin == senhaUsuario)
-                return true;
-            else
-                return false;
+            return senhaLogin == senhaUsuario;
         }
         private async Task<Image> SalvarImagemUsuario(string nomeArquivo)
         {
