@@ -27,10 +27,9 @@ namespace AulaAWS.Lib.Data.Repositorios
         public async Task<Usuario> BuscarUsuarioPorEmail(string email)
         {
             var usuario = await _dbset.AsNoTracking().FirstAsync(x => x.Email == email);
-            if (usuario != null)
-                return usuario;
-            else
+            if (usuario == null)
                 throw new Exception("Nenhum usuario foi encontrado com esse email!");
+            return usuario;
         }
     }
 }
