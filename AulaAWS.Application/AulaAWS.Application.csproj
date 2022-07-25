@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AulaAWS.Lib\AulaAWS.Lib.csproj" />
+    <ProjectReference Include="..\AulaAWS.Services\AulaAWS.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AulaAWS.Web", "AulaAWS.Web\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AulaAWS.Test", "AulaAWS.Test\AulaAWS.Test.csproj", "{F6F9258A-FB19-4B3A-9906-339D8398CD8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AulaAWS.Services", "AulaAWS.Services\AulaAWS.Services.csproj", "{1C4C50C3-8D87-4AD4-8CA1-1992ABD0FA5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{F6F9258A-FB19-4B3A-9906-339D8398CD8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6F9258A-FB19-4B3A-9906-339D8398CD8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6F9258A-FB19-4B3A-9906-339D8398CD8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C4C50C3-8D87-4AD4-8CA1-1992ABD0FA5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C4C50C3-8D87-4AD4-8CA1-1992ABD0FA5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C4C50C3-8D87-4AD4-8CA1-1992ABD0FA5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C4C50C3-8D87-4AD4-8CA1-1992ABD0FA5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
