@@ -7,7 +7,7 @@ using AulaAWS.Lib.Data.Repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using AulaAWS.Application.Services;
 using AulaAWS.Application;
-
+using AulaAWS.Web.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +30,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<UsuarioMiddleware>();
 
 app.UseHttpsRedirection();
 

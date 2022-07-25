@@ -24,96 +24,47 @@ namespace AulaAWS.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CadastrarUsuario(UsuarioDTO usuarioDto)
         {
-            try
-            {
                 var idUsuario = await _application.CadastrarUsuario(usuarioDto);
                 return Ok(idUsuario);
-            }
-            catch (System.Exception)
-            {
-                return BadRequest("Deu Erro");
-            }
         }
 
         [HttpGet]
         public async Task<IActionResult> ListarTodosUsuarios()
         {
-            try
-            {
-                return Ok(await _application.ListarUsuarios());
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+                return Ok(await _application.ListarUsuarios());    
         }
 
         [HttpPut]
         public async Task<IActionResult> AtualizarSenhaUsuario(int id, string senha)
         {
-            try
-            {
                 await _application.AlterarSenhaUsuario(id, senha);
                 return Ok();
-            }
-            catch (System.Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeletarUsuario(int id)
         {
-            try
-            {
                 await _application.DeletarUsuario(id);
                 return Ok();
-            }
-            catch (System.Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpPost("imagem")]
         public async Task<IActionResult> CadastrarUsuarioImagem(int id, IFormFile imagem)
         {
-            try
-            {
                 await _application.CadastrarImagemUsuario(id, imagem);
                 return Ok();
-            }
-            catch (System.Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpGet("Login")]
         public async Task<IActionResult> LoginUsuario(string email, string senhaLogin)
         {
-            try
-            {
                 return Ok(await _application.LoginUsuario(email, senhaLogin));
-            }
-            catch (System.Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpPost("Login/Imagem")]
         public async Task<IActionResult> LoginUsuarioImagem(int id, IFormFile imagemLogin)
         {
-            try
-            {
                 return Ok(await _application.LoginUsuarioImagem(id, imagemLogin));
-            }
-            catch (System.Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
     }
 }

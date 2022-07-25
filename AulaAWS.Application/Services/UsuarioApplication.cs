@@ -114,7 +114,7 @@ namespace AulaAWS.Application.Services
                 if ((response.FaceDetails.Count == 1) && (response.FaceDetails.First().Eyeglasses.Value == false))
                     return true;
                 else
-                    throw new Exception("Essa imagem nao contem um rosto!");
+                    throw new Exception("Imagem inválida! Atenção a imagem deve conter somente um rosto e não pode estar usando óculos");
             }
         }
         private bool VerificarSenha(string senhaLogin, string senhaUsuario)
