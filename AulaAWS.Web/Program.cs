@@ -1,9 +1,6 @@
 using Amazon.Runtime;
 using Amazon.S3;
 using Amazon.Rekognition;
-using AulaAWS.Lib.Data;
-using AulaAWS.Lib.Data.Repositorios;
-using AulaAWS.Lib.Data.Repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using AulaAWS.Application.Services;
 using AulaAWS.Application;
