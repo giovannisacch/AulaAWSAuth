@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\AulaAWS.Application\AulaAWS.Application.csproj" />
+    <ProjectReference Include="..\AulaAWS.Lib\AulaAWS.Lib.csproj" />
+    <ProjectReference Include="..\AulaAWS.Services\AulaAWS.Services.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

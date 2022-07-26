@@ -8,12 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using AulaAWS.Application.Services;
 using AulaAWS.Application;
 using AulaAWS.Web.Middleware;
+using AulaAWS.Di;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddScoped<IUsuarioApplication, UsuarioApplication>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
