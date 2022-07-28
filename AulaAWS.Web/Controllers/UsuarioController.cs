@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using AulaAWS.Lib.Models;
 using AulaAWS.Application.DTOs;
-using AulaAWS.Lib.Data.Repositorios.Interfaces;
 using Amazon.S3.Model;
 using Amazon.S3;
 using Amazon.Rekognition.Model;
