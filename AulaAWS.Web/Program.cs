@@ -36,7 +36,7 @@ app.UseCors("corsapp");
 
 app.UseMiddleware<UsuarioMiddleware>();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
