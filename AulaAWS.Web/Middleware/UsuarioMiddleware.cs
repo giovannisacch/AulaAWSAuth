@@ -22,6 +22,8 @@ namespace AulaAWS.Web.Middleware
             {
                 context.Response.StatusCode = 400;
                 var responseMessage = JsonConvert.SerializeObject(new ErrorResponseModel(ex.Message));
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 await context.Response.WriteAsJsonAsync(responseMessage);
             }
         }
