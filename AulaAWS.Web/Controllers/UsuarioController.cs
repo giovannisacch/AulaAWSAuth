@@ -53,13 +53,13 @@ namespace AulaAWS.Web.Controllers
                 return Ok();
         }
 
-        [HttpGet("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> LoginUsuario(string email, string senhaLogin)
         {
                 return Ok(await _application.LoginUsuario(email, senhaLogin));
         }
 
-        [HttpPost("Login/Imagem")]
+        [HttpPost("login-imagem")]
         public async Task<IActionResult> LoginUsuarioImagem(int id, IFormFile imagemLogin)
         {
                 return Ok(await _application.LoginUsuarioImagem(id, imagemLogin));
