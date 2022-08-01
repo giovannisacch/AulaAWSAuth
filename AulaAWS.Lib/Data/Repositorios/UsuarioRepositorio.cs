@@ -12,13 +12,13 @@ namespace AulaAWS.Lib.Data.Repositorios
 
         }
 
-        public async Task AlterarSenhaAsync(int id, string senha)
+        public async Task AlterarSenhaAsync(Guid id, string senha)
         {
             var usuario = await _dbset.FindAsync(id);
             usuario.SetSenha(senha);
             await _context.SaveChangesAsync();
         }
-        public async Task AtualizarImagemAsync(int id, string nomeArquivo)
+        public async Task AtualizarImagemAsync(Guid id, string nomeArquivo)
         {
             var usuario = await _dbset.FindAsync(id);
             usuario.SetUrlImagem(nomeArquivo);

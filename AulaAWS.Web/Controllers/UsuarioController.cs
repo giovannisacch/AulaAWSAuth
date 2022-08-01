@@ -33,21 +33,21 @@ namespace AulaAWS.Web.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> AtualizarSenhaUsuario(int id, string senha)
+        public async Task<IActionResult> AtualizarSenhaUsuario(Guid id, string senha)
         {
                 await _application.AlterarSenhaUsuario(id, senha);
                 return Ok();
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeletarUsuario(int id)
+        public async Task<IActionResult> DeletarUsuario(Guid id)
         {
                 await _application.DeletarUsuario(id);
                 return Ok();
         }
 
         [HttpPost("imagem")]
-        public async Task<IActionResult> CadastrarUsuarioImagem(int id, IFormFile imagem)
+        public async Task<IActionResult> CadastrarUsuarioImagem(Guid id, IFormFile imagem)
         {
                 await _application.CadastrarImagemUsuario(id, imagem);
                 return Ok();
@@ -59,8 +59,8 @@ namespace AulaAWS.Web.Controllers
                 return Ok(await _application.LoginUsuario(email, senhaLogin));
         }
 
-        [HttpPost("login-imagem")]
-        public async Task<IActionResult> LoginUsuarioImagem(int id, IFormFile imagemLogin)
+        [HttpPost("Login/Imagem")]
+        public async Task<IActionResult> LoginUsuarioImagem(Guid id, IFormFile imagemLogin)
         {
                 return Ok(await _application.LoginUsuarioImagem(id, imagemLogin));
         }

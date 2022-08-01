@@ -7,6 +7,7 @@ using AulaAWS.Lib.Data.Repositorios.Interfaces;
 using AulaAWS.Lib.Models;
 using Microsoft.AspNetCore.Http;
 using AulaAWS.Services.Services;
+using Newtonsoft.Json;
 
 namespace AulaAWS.Application.Services
 {
@@ -21,11 +22,14 @@ namespace AulaAWS.Application.Services
             _imagensServices = imagensServices;
         }
 
-        public async Task<int> CadastrarUsuario(UsuarioDTO usuarioDto)
+        public async Task<string> CadastrarUsuario(UsuarioDTO usuarioDto)
         {
-            var usuario = new Usuario(usuarioDto.Id, usuarioDto.Nome, usuarioDto.Cpf, usuarioDto.DataNascimento, usuarioDto.Email, usuarioDto.Senha);
+            var usuario = new Usuario(usuarioDto.Nome, usuarioDto.Cpf, usuarioDto.DataNascimento, usuarioDto.Email, usuarioDto.Senha);
             await _repositorio.AdicionarAsync(usuario);
-            return usuario.Id;
+            var resposta = new JsonId(){
+                Id = usuario.Id.ToString()
+            };
+            return JsonConvert.SerializeObject(resposta);
         }
 
         public async Task<List<Usuario>> ListarUsuarios()
@@ -34,17 +38,17 @@ namespace AulaAWS.Application.Services
             return listaUsuarios;
         }
 
-        public async Task AlterarSenhaUsuario(int id, string senha)
+        public async Task AlterarSenhaUsuario(Guid id, string senha)
         {
             await _repositorio.AlterarSenhaAsync(id, senha);
         }
 
-        public async Task DeletarUsuario(int id)
+        public async Task DeletarUsuario(Guid id)
         {
             await _repositorio.DeletarAsync(id);
         }
 
-        public async Task CadastrarImagemUsuario(int id, IFormFile imagem)
+        public async Task CadastrarImagemUsuario(Guid id, IFormFile imagem)
         {
             var imagemValida = await _imagensServices.ValidarImagem(imagem);
             if (!imagemValida)
@@ -54,17 +58,20 @@ namespace AulaAWS.Application.Services
             await _repositorio.AtualizarImagemAsync(id, nomeArquivo);
         }
 
-        public async Task<int> LoginUsuario(string email, string senha)
+        public async Task<string> LoginUsuario(string email, string senha)
         {
             var usuario = await _repositorio.BuscarUsuarioPorEmail(email);
             var senhaEstaCorreta = VerificarSenha(senha, usuario.Senha);
             if (!senhaEstaCorreta)
                 throw new Exception("Senha incorreta");
 
-            return usuario.Id;
+            var resposta = new JsonId(){
+                Id = usuario.Id.ToString()
+            };
+            return JsonConvert.SerializeObject(resposta);
         }
 
-        public async Task<bool> LoginUsuarioImagem(int id, IFormFile imagem)
+        public async Task<bool> LoginUsuarioImagem(Guid id, IFormFile imagem)
         {
             var usuario = await _repositorio.BuscarPorIdAsync(id);
             var imagemUsuario = await _imagensServices.BuscarImagemUsuario(usuario.UrlImagemCadastro);

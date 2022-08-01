@@ -1,9 +1,3 @@
-using Amazon.Runtime;
-using Amazon.S3;
-using Amazon.Rekognition;
-using Microsoft.EntityFrameworkCore;
-using AulaAWS.Application.Services;
-using AulaAWS.Application;
 using AulaAWS.Web.Middleware;
 using AulaAWS.Di;
 
@@ -11,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+builder.Services.AddCors(p => p.AddPolicy("corsdodev", builder =>
     {
         builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
     }));
@@ -32,9 +26,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("corsapp");
-
 app.UseMiddleware<UsuarioMiddleware>();
+
+app.UseCors("corsdodev");
 
 //app.UseHttpsRedirection();
 

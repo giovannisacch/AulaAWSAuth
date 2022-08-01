@@ -1,6 +1,6 @@
 namespace AulaAWS.Application.DTOs
 {
-    public class UsuarioDTO : ModelBaseDTO
+    public class UsuarioDTO
     {
         public string Nome { get; set; }
         public string Cpf { get; set; }
