@@ -10,7 +10,7 @@ namespace AulaAWS.Lib.Models
         public string? UrlImagemCadastro { get; private set; }
         public DateTime DataCriacao { get; private set; }
 
-        public Usuario(int id, string nome, string cpf, DateTime dataNascimento, string email, string senha) : base(id)
+        public Usuario(string nome, string cpf, DateTime dataNascimento, string email, string senha) : base(Guid.NewGuid())
         {
             SetNome(nome);
             SetCpf(cpf);

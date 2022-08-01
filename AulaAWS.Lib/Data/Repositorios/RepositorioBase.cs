@@ -19,7 +19,7 @@ namespace AulaAWS.Lib.Data.Repositorios
         {
             return await _dbset.AsNoTracking().ToListAsync();
         }
-        public async Task<T> BuscarPorIdAsync(int id)
+        public async Task<T> BuscarPorIdAsync(Guid id)
         {
             return await _dbset.AsNoTracking().FirstAsync(x => x.Id == id);
         }
@@ -28,7 +28,7 @@ namespace AulaAWS.Lib.Data.Repositorios
             await _dbset.AddAsync(item);
             await _context.SaveChangesAsync();
         }
-        public async Task DeletarAsync(int id)
+        public async Task DeletarAsync(Guid id)
         {
             var item = await _dbset.FindAsync(id);
             _dbset.Remove(item);
